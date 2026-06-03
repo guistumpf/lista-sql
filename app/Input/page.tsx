@@ -4,11 +4,11 @@ import { Button } from "@/components/ui/button";
 import CampoTarefa from "@/app/components/input";
 import { ReactNode, useState } from "react";
 import Adicionar from "@/app/actions";
-
+import { useRouter } from "next/navigation";
 
 
 export default function Home({ children }: { children: ReactNode }) {
-
+  const router = useRouter()
   const [input, setinput] = useState("")
 
   async function HandleSubmit() {
@@ -21,6 +21,7 @@ export default function Home({ children }: { children: ReactNode }) {
     await Adicionar(input)
     setinput("")
     alert("Tarefa Adicionada! :)")
+    router.refresh()
   }
 
   return (
