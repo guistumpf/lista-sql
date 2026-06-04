@@ -16,20 +16,21 @@ export default function Taskitems({ id, tarefa, editando, setedit }: { id: numbe
     const [inputedit, setinput] = useState("")
 
     async function ConfirmEdit() {
-if(inputedit.trim() === ""){
-   alert("Você precisar colocar um novo valor, não uma string vazia! :)")
-    return
-}
+        if (inputedit.trim() === "") {
+            alert("Você precisar colocar um novo valor, não uma string vazia! :)")
+            return
+        }
 
         await update(inputedit, id)
-        setedit(null)
+        setinput("")
+        setedit(0)
         alert("Edição confirmada!")
         router.refresh()
     }
     return (
         <>
             {editando === id ? <div className="flex items-center gap-2 max-w-sm mt-2"><Input value={inputedit} onChange={(e) => setinput(e.target.value)} placeholder="Qual vai ser o novo valor?" /> <Button onClick={ConfirmEdit}>Confirmar</Button> </div> :
-                <div> {tarefa} <Button variant="secondary" size="icon" onClick={() => setedit(id)} className="bg-[#2A2C31] hover:bg-[#34363C] rounded-sm mr-1" title="Faça alterações nessa tarefa"><Pencil color="#ffffff" /></Button><Delete tarefa={tarefa}id={id} /></div>
+                <div> {tarefa} <Button variant="secondary" size="icon" onClick={() => setedit(id)} className="bg-[#2A2C31] hover:bg-[#34363C] rounded-sm mr-1" title="Faça alterações nessa tarefa"><Pencil color="#ffffff" /></Button><Delete tarefa={tarefa} id={id} /></div>
             }
         </>
     )
