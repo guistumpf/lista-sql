@@ -11,7 +11,7 @@ export default function RealList({ rows }: { rows: { id: number, texto: string }
         <ul className="space-y-2">
             {rows.map((row, index) => (
                 <div
-  className="flex items-center gap-3 bg-[#1A1B1E] border-l-2 border border-zinc-800 hover:border-zinc-700 hover:border-l-zinc-600 rounded-lg px-4 py-2.5 w-full transition-all duration-150"
+  className="flex items-center gap-3 bg-card border border-border hover:bg-accent rounded-lg px-4 py-2.5 w-full transition-all duration-150"
   key={index}
 >
                     <Taskitems editando={editando} setedit={setedit} tarefa={row.texto as string} id={row.id as number} key={index} /> 
