@@ -8,7 +8,7 @@ import Taskitems from "../components/EditLista";
 export default async function(){
 const algo = await db.execute(sql`SELECT * FROM public."Tarefas"`)
 
-return 
+return <h1>legal</h1>
  
 
 }

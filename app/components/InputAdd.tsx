@@ -15,6 +15,7 @@ return <Input
         value={value}
         onChange={onChange}
         placeholder={placeholder}
+        className="bg-zinc-900 border-zinc-800"
         />
 
 }
