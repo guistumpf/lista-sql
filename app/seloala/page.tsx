@@ -2,12 +2,13 @@
 
 import { sql } from "drizzle-orm";
 import { db } from "../db";
-import Lista from "../components/lista";
+import Lista from "../components/RenderLista";
+import Taskitems from "../components/EditLista";
 
 export default async function(){
 const algo = await db.execute(sql`SELECT * FROM public."Tarefas"`)
 
-return <Lista/>
+return 
  
 
 }

@@ -1,7 +1,7 @@
 
 
-import Lista from "./components/lista";
-import Home from "./Input/page";
+import Lista from "./components/RenderLista";
+import Home from "./Page/Render";
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
 

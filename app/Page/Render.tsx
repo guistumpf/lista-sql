@@ -1,7 +1,7 @@
 "use client"
 
 import { Button } from "@/components/ui/button";
-import CampoTarefa from "@/app/components/input";
+import CampoTarefa from "@/app/components/InputAdd";
 import { ReactNode, useState } from "react";
 import Adicionar from "@/app/actions";
 import { useRouter } from "next/navigation";
