@@ -8,10 +8,10 @@ import { Trash2 } from "lucide-react";
 
 export default function Delete({ tarefa, id}: { tarefa: string ,id:number}){
     const router = useRouter()
-    function del(){
+    async function del(){
     const confirmed = confirm(`A seguinte tarefa será deletada: ${tarefa}`)
 if(confirmed){
-            deletar(id)
+         await deletar(id)
  router.refresh()
  alert("Tarefa Deletada!")
 }}
