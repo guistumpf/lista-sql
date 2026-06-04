@@ -86,7 +86,7 @@
 .dark {
   --background: oklch(17.005% 0.00263 325.348);
   --foreground: oklch(0.985 0 0);
-  --card: #1A1B1E;
+  --card: #1a1b1e;
   --card-foreground: oklch(0.985 0 0);
   --popover: oklch(0.212 0.019 322.12);
   --popover-foreground: oklch(0.985 0 0);
@@ -124,7 +124,8 @@
   body {
     @apply bg-background text-foreground;
   }
-  button:not(:disabled), [role="button"]:not(:disabled) {
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
     cursor: pointer;
   }
   html {
