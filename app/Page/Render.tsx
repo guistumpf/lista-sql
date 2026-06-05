@@ -71,7 +71,7 @@ export default function Home({ children }: { children: ReactNode }) {
           </Button>
         </div>
         {children}
-      </div>
-    </>
+      </div>   
+       </>
   );
 }
