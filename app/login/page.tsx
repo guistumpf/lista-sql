@@ -11,5 +11,8 @@ export default function Login() {
     })
   }
 
-  return <button onClick={loginWithDiscord}>Login with Discord</button>
+  return(
+
+    <button onClick={loginWithDiscord}>Login with Discord</button>
+  ) 
 }

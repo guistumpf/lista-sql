@@ -5,16 +5,25 @@ import CampoTarefa from "@/app/components/InputAdd";
 import { ReactNode, useState } from "react";
 import Adicionar from "@/app/actions";
 import { useRouter } from "next/navigation";
-import { BadgePlus, LogOut, Moon, Plus, SquarePlus, Sun } from "lucide-react";
+import { BadgePlus, Info, LogOut, Moon, Plus, SquarePlus, Sun } from "lucide-react";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
+  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { useTheme } from "next-themes";
 import { createClient } from "@/utils/supabase/client";
 import { json } from "stream/consumers";
+import Clear from "../components/ClearButton";
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import { TbSourceCode } from "react-icons/tb";
+import { SiLucide, SiNextdotjs, SiShadcnui } from "react-icons/si";
+import { RiEmotionHappyLine, RiSupabaseFill } from "react-icons/ri";
+import { IoLogoVercel } from "react-icons/io5";
+import { BiLogoPostgresql } from "react-icons/bi";
+import { FaGithub } from "react-icons/fa";
 const supabase = await createClient()   
 const { data: { user } } = await supabase.auth.getUser()
 
@@ -22,6 +31,8 @@ export default function Home({ children }: { children: ReactNode }) {
   const router = useRouter();
   const [input, setinput] = useState("");
   const { setTheme } = useTheme();
+const [infoOpen, setOpen] = useState(false);
+
   async function HandleSubmit() {
     if (input.trim() === "") {
       alert("Digite algo, não ocupe espaço na database atoa :(");
@@ -30,7 +41,6 @@ export default function Home({ children }: { children: ReactNode }) {
     
     await Adicionar(input);
     setinput("");
-    alert("Tarefa Adicionada! :)");
     router.refresh();
   }
 
@@ -42,7 +52,7 @@ async function  logOut() {
   if(confirmed){
     const singout = await supabase.auth.signOut()
     singout
-    alert("Sessão Encerrada! ")
+    alert("Sessão Encerrada!")
     router.refresh()
   }
     }
@@ -52,28 +62,71 @@ console.log(user?.user_metadata)
  const picture = user?.user_metadata.picture
   return (
     <> 
-    <DropdownMenu>
-          <DropdownMenuTrigger asChild className="fixed top-4 right-4 z-50">
-            <Button variant="outline"className="rounded-sm">
-            <h1 className="font-bold">{name}</h1><Image
-      src={picture as string}
-      width={25}
-      height={25}
-      alt="Picture of the author" 
-      className="rounded-4xl"
-    />
-            </Button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent align="end" className="rounded">
-           <DropdownMenuItem>
-              Dark
-            </DropdownMenuItem>
-             <DropdownMenuItem onClick={logOut} className="cursor-pointer">
-              <LogOut color="red"/> <h1 className="text-red-500 ">Sair</h1>
-            </DropdownMenuItem>
-          </DropdownMenuContent>
-        </DropdownMenu>
-      <div className="fixed bottom-4 right-4 z-50">
+  {/* DropDown menu user */}
+   <DropdownMenu>
+  <DropdownMenuTrigger asChild className="fixed top-4 right-4 z-50">
+    <Button variant="outline" className="rounded-sm">
+      <h1 className="font-bold">{name}</h1>
+      <Image
+        src={picture as string}
+        width={25}
+        height={25}
+        alt="Picture of the author"
+        className="rounded-4xl"
+      />
+    </Button>
+  </DropdownMenuTrigger>
+
+  <DropdownMenuContent align="end" className="rounded">
+  
+    <DropdownMenuItem
+      onSelect={(e) => {
+        e.preventDefault();
+        setOpen(true);
+      }}
+      className="cursor-pointer"
+    >
+      <Info />
+      <span>Info</span>
+    </DropdownMenuItem>
+
+    <DropdownMenuSeparator />
+    <Clear />
+    <DropdownMenuItem onClick={logOut} className="cursor-pointer">
+      <LogOut color="red" />
+      <h1 className="text-red-500">Sair</h1>
+    </DropdownMenuItem>
+  </DropdownMenuContent>
+</DropdownMenu>
+
+<Dialog open={infoOpen} onOpenChange={setOpen}>
+  <DialogContent className=" rounded-sm">
+    <DialogHeader>
+      <DialogTitle>CRUD?! COM SQL E AUTENTICAÇÃO?!</DialogTitle>
+           <DialogDescription>
+                <p className="">Dessa vez é um crud! </p>
+<p className="mt-2">Meu maior projeto até aqui! :)</p>
+<h1 className="mt-1">Sistema de autenticação fornecido pelo discord, eu não tenho acesso as suas mensagens</h1>
+
+                <a href="https://github.com/guistumpf/lista-sql" className="w-fit block">
+                  <TbSourceCode className="text-2xl mt-2 mb2 cursor-pointer" title="Código Fonte" />
+                </a>
+                <p className="mb-2 mt-2 font-bold">Tecnologias Utilizadas:</p>
+                <div className="flex justify-center gap-3">
+                  <FaGithub className="text-2xl" title="Github / Github Desktop" />
+                  <SiNextdotjs className="text-2xl" title="Next.Js" />
+                  <RiSupabaseFill className="text-2xl" title="Supabase" />
+                  <SiShadcnui className="text-2xl" title="Shadcn/ui" />
+                  <IoLogoVercel className="text-2xl" title="Vercel" />
+                  <SiLucide className="text-2xl" title="Lucide Icons"/> </div>
+              </DialogDescription>
+    </DialogHeader>
+  </DialogContent>
+</Dialog>
+
+
+  {/* DropDown tema */}
+<div className="fixed bottom-4 right-4 z-50">
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button variant="outline" size="icon" className="rounded-sm">
@@ -89,12 +142,11 @@ console.log(user?.user_metadata)
             <DropdownMenuItem onClick={() => setTheme("dark")}>
               Dark
             </DropdownMenuItem>
-            <DropdownMenuItem onClick={() => setTheme("system")}>
-              System
-            </DropdownMenuItem>
-          </DropdownMenuContent>
+           </DropdownMenuContent>
         </DropdownMenu>
-      </div>
+</div>
+
+  {/* Principal Content */}
       <div className="flex flex-col items-center justify-start min-h-screen w-full gap-6">
         <div className="text-center">
         <h1 className="text-2xl mt-1">Lista de Tarefas</h1>

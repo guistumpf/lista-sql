@@ -29,3 +29,10 @@ export async function update(tarefa: string, id:number) {
   const edit = await db.execute (sql`UPDATE "Tarefas" SET texto=${tarefa} WHERE id=${id} AND user_id=${user.id}`)
 }
 
+export async function  clear() {
+     const supabase = await createClient()
+  const { data: { user } } = await supabase.auth.getUser()
+  if (!user) throw new Error("User not authenticated")
+
+    const clear = await db.execute(sql`DELETE FROM "Tarefas" WHERE user_id=${user.id}`)
+}

@@ -49,7 +49,7 @@
 }
 
 :root {
-  --background: oklch(1 0 0);
+  --background: #fafafa;
   --foreground: oklch(0.145 0.008 326);
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.145 0.008 326);
@@ -88,7 +88,7 @@
   --foreground: oklch(0.985 0 0);
   --card: #1a1b1e;
   --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.212 0.019 322.12);
+  --popover: #121212;
   --popover-foreground: oklch(0.985 0 0);
   --primary: oklch(0.922 0.005 325.62);
   --primary-foreground: oklch(0.212 0.019 322.12);
