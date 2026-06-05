@@ -30,9 +30,9 @@ const { data: { user } } = await supabase.auth.getUser()
 export default function Home({ children }: { children: ReactNode }) {
   const router = useRouter();
   const [input, setinput] = useState("");
+  const [infoOpen, setOpen] = useState(false);
   const { setTheme } = useTheme();
-const [infoOpen, setOpen] = useState(false);
-
+  
   async function HandleSubmit() {
     if (input.trim() === "") {
       alert("Digite algo, não ocupe espaço na database atoa :(");
@@ -43,10 +43,7 @@ const [infoOpen, setOpen] = useState(false);
     setinput("");
     router.refresh();
   }
-
-
-
-
+  
 async function  logOut() {
  const confirmed = confirm("Tem certeza que deseja encerrar sua sessão? Será necessário logar novamente")  
   if(confirmed){
@@ -100,7 +97,8 @@ console.log(user?.user_metadata)
 </DropdownMenu>
 
 <Dialog open={infoOpen} onOpenChange={setOpen}>
-  <DialogContent className=" rounded-sm">
+  <DialogContent className=" rounded-sm"  onClick={(e) => {
+        e.preventDefault();}}> 
     <DialogHeader>
       <DialogTitle>CRUD?! COM SQL E AUTENTICAÇÃO?!</DialogTitle>
            <DialogDescription>
