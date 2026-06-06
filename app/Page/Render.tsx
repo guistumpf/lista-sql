@@ -101,7 +101,7 @@ const picture = user?.user_metadata.avatar_url || user?.user_metadata.picture
            <DialogDescription>
                 <p className="">Dessa vez é um crud! </p>
 <p className="mt-2">Meu maior projeto até aqui! :)</p>
-<h1 className="mt-1">Sistema de autenticação fornecido pelo discord, eu não tenho acesso as suas mensagens</h1>
+<h1 className="mt-1">Sistema de autenticação fornecido pelo supabase, eu não tenho acesso as suas senhas</h1>
 <h1 className="mt-1 mb-1 text-[10px]">*Toda a UI do projeto foi feita com Shadcn, Tailwind, React Icons e Lucide</h1>
                 <a href="https://github.com/guistumpf/lista-sql" className="w-fit block">
                   <TbSourceCode className="text-2xl mt-2 mb2 cursor-pointer" title="Código Fonte" />
@@ -125,7 +125,7 @@ const picture = user?.user_metadata.avatar_url || user?.user_metadata.picture
   {/* DropDown tema */}
 <div className="fixed bottom-4 right-4 z-50">
         <DropdownMenu>
-          <DropdownMenuTrigger asChild>
+          <DropdownMenuTrigger>
             <Button variant="outline" size="icon" className="rounded-sm">
               <Sun className="h-[1.2rem] w-[1.2rem] scale-100 rotate-0 transition-all dark:scale-0 dark:-rotate-90" />
               <Moon className="absolute h-[1.2rem] w-[1.2rem] scale-0 rotate-90 transition-all dark:scale-100 dark:rotate-0" />

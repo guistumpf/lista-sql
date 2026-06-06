@@ -34,7 +34,7 @@ async function loginWithGithub() {
   <div className="p-4 flex justify-center flex-col">
     <h1 className="text-xl font-semibold flex justify-center">Lista de Tarefas</h1>
   <h3 className="text-[10px] text-zinc-400 text-center">
-    Projeto Fullstack Crud com Autenticação
+Teste todas as possibilidades!
     </h3>
   </div>
 
@@ -92,7 +92,11 @@ async function loginWithGithub() {
           </h1>
         </h1>
 <div className='mt-3'>
-          <Button className='rounded-sm hover:bg-[#26282A] hover:text-white' > <FaUserSecret/> Entre sem Login</Button>
+            <a href="https://lista-sql-anonimo.vercel.app/">
+          <Button className='rounded-sm hover:bg-[#26282A] hover:text-white' > 
+            <FaUserSecret/> Entre sem Login
+            </Button>
+            </a>
 </div>
       </DialogDescription>
     </DialogHeader>
