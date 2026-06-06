@@ -1,13 +1,16 @@
 "use client"
 import { Button } from '@/components/ui/button'
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog'
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu'
 import { createClient } from '@/utils/supabase/client'
-import { BookMarked } from 'lucide-react'
+import { BookMarked, Moon, Sun } from 'lucide-react'
+import { useTheme } from 'next-themes'
 import { FaUser, FaUserNinja, FaUserSecret } from 'react-icons/fa'
 import { FaDiscord, FaGithub } from 'react-icons/fa'
 
 export default function Login() {
   const supabase = createClient()
+  const { setTheme } = useTheme();
 
   async function loginWithDiscord() {
     await supabase.auth.signInWithOAuth({
@@ -42,7 +45,7 @@ Teste todas as possibilidades!
   <div className="flex-1 flex items-center justify-center">
   <div className="bg-[#121212] p-6 rounded-xl border border-[#212122] shadow-md flex flex-col gap-4 w-full max-w-sm">
 
-    <h1 className="text-lg font-semibold text-center">
+    <h1 className="text-lg font-semibold text-center text-white">
       Faça Seu Login
     </h1>
 
@@ -157,8 +160,26 @@ text-decoration-line: underline'>Discord</a>} ou {<a href='https://docs.github.c
   </DialogContent>
 </Dialog>
     </div>
-
-
+{"here claude- principal content"}
+<div className="fixed bottom-4 left-4 z-50">
+        <DropdownMenu>
+          <DropdownMenuTrigger>
+            <Button variant="outline" size="icon" className="rounded-sm">
+              <Sun className="h-[1.2rem] w-[1.2rem] scale-100 rotate-0 transition-all dark:scale-0 dark:-rotate-90" />
+              <Moon className="absolute h-[1.2rem] w-[1.2rem] scale-0 rotate-90 transition-all dark:scale-100 dark:rotate-0" />
+              <span className="sr-only"></span>
+            </Button>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent align="end" className="rounded">
+            <DropdownMenuItem onClick={() => setTheme("light")}>
+              Light
+            </DropdownMenuItem>
+            <DropdownMenuItem onClick={() => setTheme("dark")}>
+              Dark
+            </DropdownMenuItem>
+           </DropdownMenuContent>
+        </DropdownMenu>
+</div>
 
     </>
   )
