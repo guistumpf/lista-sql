@@ -54,7 +54,7 @@ async function  logOut() {
     
 const name = user?.user_metadata.full_name
 const picture = user?.user_metadata.avatar_url || user?.user_metadata.picture
-  return (
+ return (
     <> 
   {/* DropDown menu user */}
    <DropdownMenu>
@@ -145,9 +145,10 @@ const picture = user?.user_metadata.avatar_url || user?.user_metadata.picture
 
   {/* Principal Content */}
       <div className="flex flex-col items-center justify-start min-h-screen w-full gap-6">
-        <div className="text-center">
-        <h1 className="text-2xl mt-1">Lista de Tarefas</h1>
-        <h2 className="text-xs text center">Olá {name}! 👋 </h2>
+        {/* ADDED mt-16 md:mt-0 HERE to push content down only on mobile */}
+        <div className="text-center mt-16 md:mt-0">
+          <h1 className="text-2xl mt-1">Lista de Tarefas</h1>
+          <h2 className="text-xs text center">Olá {name}! 👋 </h2>
         </div>
         <div className="flex gap-2 w-full max-w-80">
           <CampoTarefa
