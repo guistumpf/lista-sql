@@ -5,7 +5,7 @@ import CampoTarefa from "@/app/components/InputAdd";
 import { ReactNode, useState } from "react";
 import Adicionar from "@/app/actions";
 import { useRouter } from "next/navigation";
-import { BadgePlus, Info, LogOut, Moon, Plus, SquarePlus, Sun } from "lucide-react";
+import { Info, LogOut, Moon, SquarePlus, Sun } from "lucide-react";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -15,14 +15,12 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { useTheme } from "next-themes";
 import { createClient } from "@/utils/supabase/client";
-import { json } from "stream/consumers";
 import Clear from "../components/ClearButton";
-import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { TbSourceCode } from "react-icons/tb";
-import { SiLucide, SiNextdotjs, SiShadcnui } from "react-icons/si";
-import { RiEmotionHappyLine, RiSupabaseFill } from "react-icons/ri";
+import { SiLucide, SiNextdotjs, SiShadcnui, SiTailwindcss } from "react-icons/si";
+import { RiSupabaseFill } from "react-icons/ri";
 import { IoLogoVercel } from "react-icons/io5";
-import { BiLogoPostgresql } from "react-icons/bi";
 import { FaGithub } from "react-icons/fa";
 const supabase = await createClient()   
 const { data: { user } } = await supabase.auth.getUser()
@@ -54,10 +52,8 @@ async function  logOut() {
   }
     }
     
-console.log(user?.user_metadata)
- const name = user?.user_metadata.full_name
-const picture = user?.user_metadata.picture || user?.user_metadata.avatar_url
-console.log(picture)
+const name = user?.user_metadata.full_name
+const picture = user?.user_metadata.avatar_url || user?.user_metadata.picture
   return (
     <> 
   {/* DropDown menu user */}
@@ -106,7 +102,7 @@ console.log(picture)
                 <p className="">Dessa vez é um crud! </p>
 <p className="mt-2">Meu maior projeto até aqui! :)</p>
 <h1 className="mt-1">Sistema de autenticação fornecido pelo discord, eu não tenho acesso as suas mensagens</h1>
-
+<h1 className="mt-1 mb-1 text-[10px]">*Toda a UI do projeto foi feita com Shadcn, Tailwind, React Icons e Lucide</h1>
                 <a href="https://github.com/guistumpf/lista-sql" className="w-fit block">
                   <TbSourceCode className="text-2xl mt-2 mb2 cursor-pointer" title="Código Fonte" />
                 </a>
@@ -117,7 +113,9 @@ console.log(picture)
                   <RiSupabaseFill className="text-2xl" title="Supabase" />
                   <SiShadcnui className="text-2xl" title="Shadcn/ui" />
                   <IoLogoVercel className="text-2xl" title="Vercel" />
-                  <SiLucide className="text-2xl" title="Lucide Icons"/> </div>
+                  <SiLucide className="text-2xl" title="Lucide Icons"/> 
+                  <SiTailwindcss className="text-2xl" title="Tailwind Css"/>
+                  </div>
               </DialogDescription>
     </DialogHeader>
   </DialogContent>
