@@ -143,13 +143,14 @@ const picture = user?.user_metadata.avatar_url || user?.user_metadata.picture
         </DropdownMenu>
 </div>
 
-  {/* Principal Content */}
-     <div className="flex flex-col items-center justify-start min-h-[100dvh] w-full gap-6 pt-24 md:pt-10 px-4 box-border">
-        <div className="text-center">
+      <div className="flex flex-col items-center justify-start h-[100dvh] w-full gap-6 pt-24 md:pt-10 px-4 overflow-hidden box-border">
+      
+        <div className="text-center shrink-0">
           <h1 className="text-2xl mt-1">Lista de Tarefas</h1>
           <h2 className="text-xs text-center">Olá {name}! 👋 </h2>
         </div>
-        <div className="flex gap-2 w-full max-w-80">
+        
+        <div className="flex gap-2 w-full max-w-80 shrink-0">
           <CampoTarefa
             value={input}
             onChange={(e) => {
@@ -161,7 +162,11 @@ const picture = user?.user_metadata.avatar_url || user?.user_metadata.picture
             Add
           </Button>
         </div>
-        {children}
+
+        <div className="w-full flex-1 overflow-y-auto pb-20 flex flex-col items-center">
+          {children}
+        </div>
+
       </div>   
        </>
   );
