@@ -103,7 +103,7 @@ const picture = user?.user_metadata.avatar_url || user?.user_metadata.picture
 <p className="mt-2">Meu maior projeto até aqui! :)</p>
 <h1 className="mt-1">Sistema de autenticação fornecido pelo supabase, eu não tenho acesso as suas senhas</h1>
 <h1 className="mt-1 mb-1 text-[10px]">*Toda a UI do projeto foi feita com Shadcn, Tailwind, React Icons e Lucide</h1>
-                <a href="https://github.com/guistumpf/lista-sql" className="w-fit block">
+                <a href="https://github.com/guistumpf/lista-sql" className="w-fit block"  onClick={(e) => e.stopPropagation()}>
                   <TbSourceCode className="text-2xl mt-2 mb2 cursor-pointer" title="Código Fonte" />
                 </a>
                 <p className="mb-2 mt-2 font-bold">Tecnologias Utilizadas:</p>
