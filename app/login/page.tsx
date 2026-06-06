@@ -160,7 +160,7 @@ text-decoration-line: underline'>Discord</a>} ou {<a href='https://docs.github.c
   </DialogContent>
 </Dialog>
     </div>
-
+{"here claude- principal content"}
 <div className="fixed bottom-4 left-4 z-50">
         <DropdownMenu>
           <DropdownMenuTrigger>
