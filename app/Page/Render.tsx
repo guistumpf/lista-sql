@@ -54,13 +54,12 @@ async function  logOut() {
     
 const name = user?.user_metadata.full_name
 const picture = user?.user_metadata.avatar_url || user?.user_metadata.picture
- return (
+return (
   <>
-    {/* Outer layout wrapper */}
     <div className="flex flex-col h-[100dvh] overflow-hidden w-full">
 
-      {/* Mobile-only: user button in normal flow, always above title */}
-      <div className="flex justify-end px-4 pt-4 pb-2 shrink-0 md:hidden">
+      {/* Header row — always in flow, button always above title, no overlap possible */}
+      <div className="flex justify-end px-4 pt-4 pb-2 shrink-0">
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button variant="outline" className="rounded-sm">
@@ -95,8 +94,8 @@ const picture = user?.user_metadata.avatar_url || user?.user_metadata.picture
         </DropdownMenu>
       </div>
 
-      {/* Content area */}
-      <div className="flex-1 flex flex-col items-center justify-start gap-6 pt-4 md:pt-10 px-4 overflow-hidden min-h-0 box-border">
+      {/* Content */}
+      <div className="flex-1 flex flex-col items-center justify-start gap-6 px-4 overflow-hidden min-h-0 box-border">
 
         <div className="text-center shrink-0">
           <h1 className="text-2xl mt-1">Lista de Tarefas</h1>
@@ -121,42 +120,6 @@ const picture = user?.user_metadata.avatar_url || user?.user_metadata.picture
         </div>
 
       </div>
-    </div>
-
-    {/* Desktop-only: fixed user button — unchanged from original */}
-    <div className="hidden md:block fixed top-4 right-4 z-50">
-      <DropdownMenu>
-        <DropdownMenuTrigger asChild>
-          <Button variant="outline" className="rounded-sm">
-            <h1 className="font-bold">{name}</h1>
-            <Image
-              src={picture as string}
-              width={25}
-              height={25}
-              alt="Picture of the author"
-              className="rounded-4xl"
-            />
-          </Button>
-        </DropdownMenuTrigger>
-        <DropdownMenuContent align="end" className="rounded">
-          <DropdownMenuItem
-            onSelect={(e) => {
-              e.preventDefault();
-              setOpen(true);
-            }}
-            className="cursor-pointer"
-          >
-            <Info />
-            <span>Info</span>
-          </DropdownMenuItem>
-          <DropdownMenuSeparator />
-          <Clear />
-          <DropdownMenuItem onClick={logOut} className="cursor-pointer">
-            <LogOut color="red" />
-            <h1 className="text-red-500">Sair</h1>
-          </DropdownMenuItem>
-        </DropdownMenuContent>
-      </DropdownMenu>
     </div>
 
     {/* Info Dialog */}
