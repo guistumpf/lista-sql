@@ -144,11 +144,10 @@ const picture = user?.user_metadata.avatar_url || user?.user_metadata.picture
 </div>
 
   {/* Principal Content */}
-      <div className="flex flex-col items-center justify-start min-h-screen w-full gap-6">
-        {/* ADDED mt-16 md:mt-0 HERE to push content down only on mobile */}
-        <div className="text-center mt-16 md:mt-0">
+     <div className="flex flex-col items-center justify-start min-h-[100dvh] w-full gap-6 pt-24 md:pt-10 px-4 box-border">
+        <div className="text-center">
           <h1 className="text-2xl mt-1">Lista de Tarefas</h1>
-          <h2 className="text-xs text center">Olá {name}! 👋 </h2>
+          <h2 className="text-xs text-center">Olá {name}! 👋 </h2>
         </div>
         <div className="flex gap-2 w-full max-w-80">
           <CampoTarefa
