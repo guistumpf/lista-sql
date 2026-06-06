@@ -56,7 +56,8 @@ async function  logOut() {
     
 console.log(user?.user_metadata)
  const name = user?.user_metadata.full_name
- const picture = user?.user_metadata.picture
+const picture = user?.user_metadata.picture || user?.user_metadata.avatar_url
+console.log(picture)
   return (
     <> 
   {/* DropDown menu user */}
