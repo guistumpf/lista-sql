@@ -38,6 +38,7 @@ const supabase = await createClient();
 const {
   data: { user },
 } = await supabase.auth.getUser();
+export const dynamic = 'force-dynamic';
 
 export default function Home({ children }: { children: ReactNode }) {
   const router = useRouter();
