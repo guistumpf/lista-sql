@@ -1,10 +1,4 @@
-import {
-  pgTable,
-  bigint,
-  timestamp,
-  text,
-  uuid,
-} from "drizzle-orm/pg-core";
+import { pgTable, bigint, timestamp, text, uuid } from "drizzle-orm/pg-core";
 
 // schema.ts
 export const tarefas = pgTable("Tarefas", {

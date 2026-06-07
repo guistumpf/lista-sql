@@ -1,38 +1,53 @@
-"use server"
+"use server";
 
 import { sql } from "drizzle-orm";
 import { db } from "./db";
 import { createClient } from "@/utils/supabase/server";
-  
 
 export default async function Adicionar(tarefa: string) {
-  const supabase = await createClient()
-  const { data: { user } } = await supabase.auth.getUser()
-  if (!user) throw new Error("User not authenticated")
+  const supabase = await createClient();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+  if (!user) throw new Error("User not authenticated");
 
-  const add = await db.execute(sql`INSERT INTO "Tarefas" (texto, user_id) VALUES (${tarefa}, ${user.id}) `)
+  const add = await db.execute(
+    sql`INSERT INTO "Tarefas" (texto, user_id) VALUES (${tarefa}, ${user.id}) `,
+  );
 }
 
-export async function deletar(id: number){
-  const supabase = await createClient()
-  const { data: { user } } = await supabase.auth.getUser()
-  if (!user) throw new Error("User not authenticated")
+export async function deletar(id: number) {
+  const supabase = await createClient();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+  if (!user) throw new Error("User not authenticated");
 
-  const deleta = await db.execute(sql`DELETE FROM "Tarefas" WHERE id=${id} AND user_id=${user.id}`)
+  const deleta = await db.execute(
+    sql`DELETE FROM "Tarefas" WHERE id=${id} AND user_id=${user.id}`,
+  );
 }
 
-export async function update(tarefa: string, id:number) {
-  const supabase = await createClient()
-  const { data: { user } } = await supabase.auth.getUser()
-  if (!user) throw new Error("User not authenticated")
+export async function update(tarefa: string, id: number) {
+  const supabase = await createClient();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+  if (!user) throw new Error("User not authenticated");
 
-  const edit = await db.execute (sql`UPDATE "Tarefas" SET texto=${tarefa} WHERE id=${id} AND user_id=${user.id}`)
+  const edit = await db.execute(
+    sql`UPDATE "Tarefas" SET texto=${tarefa} WHERE id=${id} AND user_id=${user.id}`,
+  );
 }
 
-export async function  clear() {
-     const supabase = await createClient()
-  const { data: { user } } = await supabase.auth.getUser()
-  if (!user) throw new Error("User not authenticated")
+export async function clear() {
+  const supabase = await createClient();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+  if (!user) throw new Error("User not authenticated");
 
-    const clear = await db.execute(sql`DELETE FROM "Tarefas" WHERE user_id=${user.id}`)
+  const clear = await db.execute(
+    sql`DELETE FROM "Tarefas" WHERE user_id=${user.id}`,
+  );
 }

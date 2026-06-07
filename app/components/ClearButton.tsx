@@ -21,7 +21,8 @@ export default function Clear() {
 
   return (
     <DropdownMenuItem onClick={cleaning} className="cursor-pointer">
-      <TriangleAlert className="text-amber-500 dark:text-yellow-400"/> <h1 className="text-yellow-500">Limpar</h1>
+      <TriangleAlert className="text-amber-500 dark:text-yellow-400" />{" "}
+      <h1 className="text-yellow-500">Limpar</h1>
     </DropdownMenuItem>
   );
 }
