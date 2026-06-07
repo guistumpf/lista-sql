@@ -38,7 +38,7 @@ const supabase = await createClient();
 const {
   data: { user },
 } = await supabase.auth.getUser();
-export const dynamic = 'force-dynamic';
+export const dynamic = "force-dynamic";
 
 export default function Home({ children }: { children: ReactNode }) {
   const router = useRouter();
@@ -62,10 +62,10 @@ export default function Home({ children }: { children: ReactNode }) {
       "Tem certeza que deseja encerrar sua sessão? Será necessário logar novamente",
     );
     if (confirmed) {
-      alert("Sessão encerrada!")
+      alert("Sessão encerrada!");
       await signOut();
-router.refresh()
-}
+      router.refresh();
+    }
   }
 
   console.log(user?.user_metadata.iss);
@@ -93,7 +93,7 @@ router.refresh()
                 ) : (
                   <FaDiscord />
                 )}
-              
+
                 <span className="font-bold">{name}</span>
                 <Image
                   src={picture as string}
@@ -162,12 +162,12 @@ router.refresh()
         >
           <DialogHeader>
             <DialogTitle>CRUD?! COM SQL E AUTENTICAÇÃO?!</DialogTitle>
-          
+
             <DialogDescription asChild>
               <div className="text-sm text-muted-foreground">
                 <p className="">Dessa vez é um crud! </p>
                 <p className="mt-2">Meu maior projeto até aqui! :)</p>
-                
+
                 <div className="mt-1">
                   Sistema de autenticação fornecido pelo supabase, eu não tenho
                   acesso as suas senhas

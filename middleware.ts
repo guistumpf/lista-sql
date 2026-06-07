@@ -2,7 +2,7 @@ import { createServerClient } from '@supabase/ssr'
 import { NextResponse, type NextRequest } from 'next/server'
 
 export async function middleware(request: NextRequest) {
-  // 1. Early Exit for static files (prevents layout breakage)
+  
   if (
     request.nextUrl.pathname.match(
       /\.(?:css|js|map|json|png|jpg|jpeg|gif|svg|webp|ico|woff|woff2|ttf|eot)$/i
@@ -46,10 +46,8 @@ export async function middleware(request: NextRequest) {
     const url = request.nextUrl.clone()
     url.pathname = '/login'
     
-    // Create the redirect
     const redirectResponse = NextResponse.redirect(url)
     
-    // Copy the cookies (including the freshly set ones) to the redirect
     supabaseResponse.cookies.getAll().forEach((cookie) => {
       redirectResponse.cookies.set(cookie.name, cookie.value, cookie)
     })
@@ -64,14 +62,6 @@ export async function middleware(request: NextRequest) {
 
 export const config = {
   matcher: [
-    /*
-     * Match all request paths except for the ones starting with:
-     * - _next/static (static files)
-     * - _next/image (image optimization files)
-     * - favicon.ico (favicon file)
-     * - auth/callback (THE CALLBACK ROUTE)
-     * Feel free to modify this pattern to include more paths.
-     */
-    '/((?!_next/static|_next/image|favicon.ico|auth/callback|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)',
+  '/((?!_next/static|_next/image|favicon.ico|auth/callback|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)',
   ],
 }
