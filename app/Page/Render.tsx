@@ -21,7 +21,7 @@ import { TbSourceCode } from "react-icons/tb";
 import { SiLucide, SiNextdotjs, SiShadcnui, SiTailwindcss } from "react-icons/si";
 import { RiSupabaseFill } from "react-icons/ri";
 import { IoLogoVercel } from "react-icons/io5";
-import { FaGithub } from "react-icons/fa";
+import { FaDiscord, FaGithub } from "react-icons/fa";
 const supabase = await createClient()   
 const { data: { user } } = await supabase.auth.getUser()
 
@@ -52,10 +52,25 @@ async function  logOut() {
   }
     }
     
+   console.log(user?.user_metadata.iss)
 const name = user?.user_metadata.full_name
 const picture = user?.user_metadata.avatar_url || user?.user_metadata.picture
+
+function App(){
+  if(user?.app_metadata.provider == "discord"){
+    return '<h1>test</h1>'
+
+  } if(user?.app_metadata.provider == "github"){
+    return 'oiii'
+
+  }
+
+
+}
+
 return (
   <>
+
     <div className="flex flex-col h-[100dvh] overflow-hidden w-full">
 
       {/* Header row — always in flow, button always above title, no overlap possible */}
@@ -63,6 +78,7 @@ return (
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button variant="outline" className="rounded-sm">
+              {user?.user_metadata.iss === "https://api.github.com" ? <FaGithub/> : <FaDiscord/> }
               <h1 className="font-bold">{name}</h1>
               <Image
                 src={picture as string}
@@ -70,7 +86,7 @@ return (
                 height={25}
                 alt="Picture of the author"
                 className="rounded-4xl"
-              />
+                />
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end" className="rounded">
@@ -80,9 +96,10 @@ return (
                 setOpen(true);
               }}
               className="cursor-pointer"
-            >
+              >
               <Info />
               <span>Info</span>
+             
             </DropdownMenuItem>
             <DropdownMenuSeparator />
             <Clear />
@@ -102,13 +119,14 @@ return (
           <h2 className="text-xs text-center">Olá {name}! 👋 </h2>
         </div>
 
+        
         <div className="flex gap-2 w-full max-w-80 shrink-0">
           <CampoTarefa
             value={input}
             onChange={(e) => {
               setinput(e.target.value);
             }}
-          />
+            />
           <Button onClick={HandleSubmit} className="rounded-sm">
             <SquarePlus />
             Add
