@@ -33,6 +33,7 @@ import {
 import { RiSupabaseFill } from "react-icons/ri";
 import { IoLogoVercel } from "react-icons/io5";
 import { FaDiscord, FaGithub } from "react-icons/fa";
+import { signOut } from "../components/Logout";
 const supabase = await createClient();
 const {
   data: { user },
@@ -60,11 +61,10 @@ export default function Home({ children }: { children: ReactNode }) {
       "Tem certeza que deseja encerrar sua sessão? Será necessário logar novamente",
     );
     if (confirmed) {
-      const singout = await supabase.auth.signOut();
-      singout;
-      alert("Sessão Encerrada!");
-      router.refresh();
-    }
+      alert("Sessão encerrada!")
+      await signOut();
+router.refresh()
+}
   }
 
   console.log(user?.user_metadata.iss);
