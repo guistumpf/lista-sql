@@ -51,22 +51,16 @@ export default function Login() {
           <h3 className="text-[10px] text-zinc-400 text-center">
             Teste todas as possibilidades!
           </h3>
-          <h3 className="text-[8px] text-zinc-400 text-center">
-            Talvez seja necessário logar 2 vezes
-          </h3>
         </div>
 
         {/* centro */}
         <div className="flex-1 flex items-center justify-center px-4">
           <div className="bg-[#121212] p-6 rounded-xl border border-[#212122] shadow-md flex flex-col gap-4 w-full max-w-sm">
-            <div>
+    
               <h1 className="text-lg font-semibold text-center text-white">
                 Faça Seu Login
               </h1>
-              <h3 className="text-[8px] text-zinc-400 text-center">
-                Talvez seja necessário logar 2 vezes
-              </h3>
-            </div>
+            
             <h3 className="text-xs text-zinc-400 text-center">
               Se o seu email do GitHub e Discord forem o mesmo, suas tarefas
               serão sincronizadas.
