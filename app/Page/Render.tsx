@@ -92,7 +92,8 @@ export default function Home({ children }: { children: ReactNode }) {
                 ) : (
                   <FaDiscord />
                 )}
-                <h1 className="font-bold">{name}</h1>
+              
+                <span className="font-bold">{name}</span>
                 <Image
                   src={picture as string}
                   width={25}
@@ -117,7 +118,8 @@ export default function Home({ children }: { children: ReactNode }) {
               <Clear />
               <DropdownMenuItem onClick={logOut} className="cursor-pointer">
                 <LogOut color="red" />
-                <h1 className="text-red-500">Sair</h1>
+                {/* Trocado <h1> por <span> */}
+                <span className="text-red-500">Sair</span>
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
@@ -159,39 +161,43 @@ export default function Home({ children }: { children: ReactNode }) {
         >
           <DialogHeader>
             <DialogTitle>CRUD?! COM SQL E AUTENTICAÇÃO?!</DialogTitle>
-            <DialogDescription>
-              <p className="">Dessa vez é um crud! </p>
-              <p className="mt-2">Meu maior projeto até aqui! :)</p>
-              <h1 className="mt-1">
-                Sistema de autenticação fornecido pelo supabase, eu não tenho
-                acesso as suas senhas
-              </h1>
-              <h1 className="mt-1 mb-1 text-[10px]">
-                *Toda a UI do projeto foi feita com Shadcn, Tailwind, React
-                Icons e Lucide
-              </h1>
-              <a
-                href="https://github.com/guistumpf/lista-sql"
-                className="w-fit block"
-                onClick={(e) => e.stopPropagation()}
-              >
-                <TbSourceCode
-                  className="text-2xl mt-2 mb-2 cursor-pointer"
-                  title="Código Fonte"
-                />
-              </a>
-              <p className="mb-2 mt-2 font-bold">Tecnologias Utilizadas:</p>
-              <div className="flex justify-center gap-3">
-                <FaGithub
-                  className="text-2xl"
-                  title="Github / Github Desktop"
-                />
-                <SiNextdotjs className="text-2xl" title="Next.Js" />
-                <RiSupabaseFill className="text-2xl" title="Supabase" />
-                <SiShadcnui className="text-2xl" title="Shadcn/ui" />
-                <IoLogoVercel className="text-2xl" title="Vercel" />
-                <SiLucide className="text-2xl" title="Lucide Icons" />
-                <SiTailwindcss className="text-2xl" title="Tailwind Css" />
+          
+            <DialogDescription asChild>
+              <div className="text-sm text-muted-foreground">
+                <p className="">Dessa vez é um crud! </p>
+                <p className="mt-2">Meu maior projeto até aqui! :)</p>
+                
+                <div className="mt-1">
+                  Sistema de autenticação fornecido pelo supabase, eu não tenho
+                  acesso as suas senhas
+                </div>
+                <div className="mt-1 mb-1 text-[10px]">
+                  *Toda a UI do projeto foi feita com Shadcn, Tailwind, React
+                  Icons e Lucide
+                </div>
+                <a
+                  href="https://github.com/guistumpf/lista-sql"
+                  className="w-fit block"
+                  onClick={(e) => e.stopPropagation()}
+                >
+                  <TbSourceCode
+                    className="text-2xl mt-2 mb-2 cursor-pointer"
+                    title="Código Fonte"
+                  />
+                </a>
+                <p className="mb-2 mt-2 font-bold">Tecnologias Utilizadas:</p>
+                <div className="flex justify-center gap-3">
+                  <FaGithub
+                    className="text-2xl"
+                    title="Github / Github Desktop"
+                  />
+                  <SiNextdotjs className="text-2xl" title="Next.Js" />
+                  <RiSupabaseFill className="text-2xl" title="Supabase" />
+                  <SiShadcnui className="text-2xl" title="Shadcn/ui" />
+                  <IoLogoVercel className="text-2xl" title="Vercel" />
+                  <SiLucide className="text-2xl" title="Lucide Icons" />
+                  <SiTailwindcss className="text-2xl" title="Tailwind Css" />
+                </div>
               </div>
             </DialogDescription>
           </DialogHeader>
@@ -200,11 +206,11 @@ export default function Home({ children }: { children: ReactNode }) {
 
       <div className="fixed bottom-4 right-4 z-50">
         <DropdownMenu>
-          <DropdownMenuTrigger>
+          <DropdownMenuTrigger asChild>
             <Button variant="outline" size="icon" className="rounded-sm">
               <Sun className="h-[1.2rem] w-[1.2rem] scale-100 rotate-0 transition-all dark:scale-0 dark:-rotate-90" />
               <Moon className="absolute h-[1.2rem] w-[1.2rem] scale-0 rotate-90 transition-all dark:scale-100 dark:rotate-0" />
-              <span className="sr-only"></span>
+              <span className="sr-only">Toggle theme</span>
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end" className="rounded">

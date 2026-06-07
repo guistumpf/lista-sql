@@ -87,7 +87,8 @@ export default function Login() {
 
             <div className="text-center">
               <Dialog>
-                <DialogTrigger>
+                {/* Adicionado asChild para evitar <button> dentro de <button> */}
+                <DialogTrigger asChild>
                   <Button
                     variant="ghost"
                     className="text-xs text-zinc-400 hover:text-white rounded-sm"
@@ -98,26 +99,32 @@ export default function Login() {
                 <DialogContent>
                   <DialogHeader>
                     <DialogTitle>Entrar Anonimamente</DialogTitle>
-                    <DialogDescription>
-                      <h1 className="font-bold text-m">
-                        Quer explorar a lista sem login? Essa alternativa
-                        existe!
-                      </h1>
-                      <h1 className="mt-1">
-                        Pórem vale ressaltar que suas tarefas não serão
-                        sincronizadas.
-                        <h1>
-                          É uma aplicação com visual identico ao da lista com
-                          login, porém com usestorage, ou seja, ficará salvo
-                          somente no seu navegador.
-                        </h1>
-                      </h1>
-                      <div className="mt-3">
-                        <a href="https://lista-sql-anonimo.vercel.app/">
-                          <Button className="rounded-sm hover:bg-[#26282A] hover:text-white">
-                            <FaUserSecret /> Entre sem Login
+                    {/* Adicionado asChild e alterado h1 para div para evitar erros no HTML */}
+                    <DialogDescription asChild>
+                      <div className="flex flex-col">
+                        <div className="font-bold text-m">
+                          Quer explorar a lista sem login? Essa alternativa
+                          existe!
+                        </div>
+                        <div className="mt-1">
+                          Pórem vale ressaltar que suas tarefas não serão
+                          sincronizadas.
+                          <div className="mt-1">
+                            É uma aplicação com visual identico ao da lista com
+                            login, porém com usestorage, ou seja, ficará salvo
+                            somente no seu navegador.
+                          </div>
+                        </div>
+                        <div className="mt-3">
+                          <Button
+                            asChild
+                            className="rounded-sm hover:bg-[#26282A] hover:text-white"
+                          >
+                            <a href="https://lista-sql-anonimo.vercel.app/">
+                              <FaUserSecret /> Entre sem Login
+                            </a>
                           </Button>
-                        </a>
+                        </div>
                       </div>
                     </DialogDescription>
                   </DialogHeader>
@@ -131,7 +138,7 @@ export default function Login() {
       {/* Segurança e Privacidade */}
       <div className="fixed bottom-4 right-4 z-50">
         <Dialog>
-          <DialogTrigger>
+          <DialogTrigger asChild>
             <Button className="bg-blue-700 text-white hover:bg-[#fafafa] hover:text-black">
               Segurança e Privacidade <BookMarked />
             </Button>
@@ -139,115 +146,103 @@ export default function Login() {
           <DialogContent>
             <DialogHeader>
               <DialogTitle>Segurança dos seus dados</DialogTitle>
-              <DialogDescription>
+              <DialogDescription className="text-l">
                 Olá! Esse projeto possui duas alternativas de login, o que pode
                 causar preocupações com dados e senhas.
               </DialogDescription>
-              <DialogDescription>
-                <h1>
+
+              
+              <div className="text-xs text-muted-foreground flex flex-col gap-y-3">
+                <div>
                   Porém vale ressaltar que a camada de login foi construída com
                   arquivos que o próprio supabase usa em seus guias, e o
                   processo de autenticação passa pelas mãos do próprio supabase
                   em comunição com o Discord/Github.
-                </h1>
-              </DialogDescription>
-              <DialogDescription>
-                <h1 className="font-bold text-sm mt-1">
-                  Sobre o processo de autenticação/conexão com a conta:{" "}
-                </h1>
-                <h1 className="mt-1">
-                  Esse processo é feito com a criação de uma Aplicação/Bot
-                  Oauth, sob resposabilidade do provedor dessa aplicação. Após
-                  seu login, somente informações básicas (email, nome de
-                  usuário) ficam armazenadas no banco de dados do supabase,
-                  sendo utilizados para o seu login respectivamente.
-                </h1>
-              </DialogDescription>
-              <DialogDescription>
-                <h1 className="font-bold text-sm mt-1">Termos:</h1>
-                <h1>
-                  Ao fazer login, você concorda com os termos e condições do{" "}
-                  {
+                </div>
+
+                <div>
+                  <div className="font-bold text-sm mt-1">
+                    Sobre o processo de autenticação/conexão com a conta:{" "}
+                  </div>
+                  <div className="mt-1">
+                    Esse processo é feito com a criação de uma Aplicação/Bot
+                    Oauth, sob resposabilidade do provedor dessa aplicação. Após
+                    seu login, somente informações básicas (email, nome de
+                    usuário) ficam armazenadas no banco de dados do supabase,
+                    sendo utilizados para o seu login respectivamente.
+                  </div>
+                </div>
+
+                <div>
+                  <div className="font-bold text-sm mt-1">Termos:</div>
+                  <div>
+                    Ao fazer login, você concorda com os termos e condições do{" "}
                     <a
                       href="https://discord.com/terms"
                       className="text-decoration-line: underline"
                     >
                       Discord
-                    </a>
-                  }{" "}
-                  ou{" "}
-                  {
+                    </a>{" "}
+                    ou{" "}
                     <a
                       href="https://docs.github.com/en/site-policy/github-terms/github-terms-of-service"
                       className="text-decoration-line: underline"
                     >
                       Github
                     </a>
-                  }
-                  .
-                </h1>
-                <h1>
-                  Você também concorda com o fato de seu email estar armazenado
-                  em um banco de dados fornecido pelo supabase.
-                </h1>
-                <h1 className="mt-1">
-                  Minha responsabilidade como desenvolvedor é garantir que o
-                  arquivo .env esteja somente em minhas máquinas de
-                  desenvolvimento, não compartilhando com terceiros. Garantir a
-                  segurança das minhas credenciais também é meu dever.
-                </h1>
-              </DialogDescription>
-              <DialogDescription>
-                <h1 className="font-bold text-sm mt-1">Extras:</h1>
-                <h1 className="">
-                  Falando de uma maneira informal, sei que é um projeto pequeno
-                  mas acho legal esclarecer isso.
-                </h1>
-                <h1 className="mt-1">
-                  Vale ressaltar que o banco será apagado conforme necessidade,
-                  pois existe um limite de dois projetos no supabase. Então seu
-                  email não ficará armazenado por mais que 3 meses no banco.
-                </h1>
-                <h1 className="font-bold text-sm mt-1">Referencias: </h1>
-                <h1 className="mt-1">
-                  {
+                    .
+                  </div>
+                  <div>
+                    Você também concorda com o fato de seu email estar
+                    armazenado em um banco de dados fornecido pelo supabase.
+                  </div>
+                </div>
+
+                <div>
+                  <div className="font-bold text-sm mt-1">Extras:</div>
+                  <div>
+                    Falando de uma maneira informal, sei que é um projeto
+                    pequeno mas acho legal esclarecer isso.
+                  </div>
+                  <div className="mt-1">
+                    Vale ressaltar que o banco será apagado conforme
+                    necessidade, pois existe um limite de dois projetos no
+                    supabase. Então seu email não ficará armazenado por mais que
+                    3 meses no banco.
+                  </div>
+                  <div className="font-bold text-sm mt-1">Referencias: </div>
+                  <div className="mt-1">
                     <a
                       href="https://supabase.com/docs/guides/auth"
                       className="text-decoration-line: underline"
                     >
                       Supabase Auth
-                    </a>
-                  }{" "}
-                  |
-                  {
+                    </a>{" "}
+                    |{" "}
                     <a
                       href="https://docs.discord.com/developers/topics/oauth2"
                       className="text-decoration-line: underline"
                     >
                       Discord OAuth2
-                    </a>
-                  }{" "}
-                  |
-                  {
+                    </a>{" "}
+                    |{" "}
                     <a
                       href="https://docs.github.com/en/apps/oauth-apps/building-oauth-apps/authorizing-oauth-apps"
                       className="text-decoration-line: underline"
                     >
                       Github Oauth
                     </a>
-                  }
-                  {
-                    <h1>
+                    <div>
                       <a
                         href="https://github.com/guistumpf/lista-sql"
                         className="text-decoration-line: underline"
                       >
                         Código Fonte
                       </a>
-                    </h1>
-                  }
-                </h1>
-              </DialogDescription>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </DialogHeader>
           </DialogContent>
         </Dialog>
@@ -255,11 +250,11 @@ export default function Login() {
 
       <div className="fixed bottom-4 left-4 z-50">
         <DropdownMenu>
-          <DropdownMenuTrigger>
+          <DropdownMenuTrigger asChild>
             <Button variant="outline" size="icon" className="rounded-sm">
               <Sun className="h-[1.2rem] w-[1.2rem] scale-100 rotate-0 transition-all dark:scale-0 dark:-rotate-90" />
               <Moon className="absolute h-[1.2rem] w-[1.2rem] scale-0 rotate-90 transition-all dark:scale-100 dark:rotate-0" />
-              <span className="sr-only"></span>
+              <span className="sr-only">Toggle theme</span>
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end" className="rounded">
