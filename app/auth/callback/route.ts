@@ -1,28 +1,38 @@
 import { NextResponse } from 'next/server'
 import { createServerClient } from '@supabase/ssr'
 import { cookies } from 'next/headers'
-import { redirect } from 'next/navigation'
 
 export async function GET(request: Request) {
   const { searchParams, origin } = new URL(request.url)
   const code = searchParams.get('code')
-  
+  const next = searchParams.get('next') ?? '/'
+
   if (code) {
-    const cookieStore = cookies() 
+    const cookieStore = await cookies()
+    
+    const response = NextResponse.redirect(new URL(next, origin))
+
     const supabase = createServerClient(
       process.env.NEXT_PUBLIC_SUPABASE_URL!,
       process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
       {
         cookies: {
-          async getAll() { return (await cookieStore).getAll() },
+          getAll() { return cookieStore.getAll() },
           setAll(cookiesToSet) {
-            cookiesToSet.forEach(async ({ name, value, options }) => (await cookieStore).set(name, value, options))
+            cookiesToSet.forEach(({ name, value, options }) => {
+              response.cookies.set(name, value, options)
+            })
           },
         },
       }
     )
-    await supabase.auth.exchangeCodeForSession(code)
+
+    const { error } = await supabase.auth.exchangeCodeForSession(code)
+    
+    if (!error) {
+      return response 
+    }
   }
 
-  return redirect("/")
+  return NextResponse.redirect(new URL('/login', origin))
 }
