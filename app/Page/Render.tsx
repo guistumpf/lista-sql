@@ -63,7 +63,7 @@ export default function Home({ children }: { children: ReactNode }) {
     );
     if (confirmed) {
     await signOut();
-      setTimeout(() => {alert("Sessão encerrada!")}, 6000);
+      setTimeout(() => {alert("Sessão encerrada!")}, 5000);
       router.refresh();
     }
   }
