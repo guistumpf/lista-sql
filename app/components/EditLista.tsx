@@ -6,7 +6,7 @@ import { update } from "../actions";
 import { useRouter } from "next/navigation";
 import Delete from "./DeleteButton";
 import { Check, Pencil, Undo } from "lucide-react";
-
+export const dynamic = "force-dynamic";
 export default function Taskitems({
   id,
   tarefa,

@@ -1,5 +1,5 @@
 "use client";
-
+export const dynamic = "force-dynamic";
 import { DropdownMenuItem } from "@/components/ui/dropdown-menu";
 import { clear } from "../actions";
 import { useRouter } from "next/navigation";

@@ -1,7 +1,7 @@
 "use client";
 import Taskitems from "./EditLista";
 import { useState } from "react";
-
+export const dynamic = "force-dynamic";
 export default function RealList({
   rows,
 }: {

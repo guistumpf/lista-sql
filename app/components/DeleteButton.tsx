@@ -5,9 +5,10 @@ import { deletar } from "../actions";
 import { useRouter } from "next/navigation";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { Trash2 } from "lucide-react";
-
+export const dynamic = "force-dynamic";
 export default function Delete({ tarefa, id }: { tarefa: string; id: number }) {
   const router = useRouter();
+  
   async function del() {
     const confirmed = confirm(`A seguinte tarefa será deletada: ${tarefa}`);
     if (confirmed) {
