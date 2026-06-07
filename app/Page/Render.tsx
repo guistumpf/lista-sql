@@ -62,8 +62,8 @@ export default function Home({ children }: { children: ReactNode }) {
       "Tem certeza que deseja encerrar sua sessão? Será necessário logar novamente",
     );
     if (confirmed) {
-      alert("Sessão encerrada!");
-      await signOut();
+    await signOut();
+      setTimeout(() => {alert("Sessão encerrada!")}, 6000);
       router.refresh();
     }
   }
