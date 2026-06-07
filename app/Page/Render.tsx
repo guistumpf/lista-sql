@@ -72,14 +72,6 @@ export default function Home({ children }: { children: ReactNode }) {
   const name = user?.user_metadata.full_name;
   const picture = user?.user_metadata.avatar_url || user?.user_metadata.picture;
 
-  function App() {
-    if (user?.app_metadata.provider == "discord") {
-      return "<h1>test</h1>";
-    }
-    if (user?.app_metadata.provider == "github") {
-      return "oiii";
-    }
-  }
 
   return (
     <>
