@@ -146,7 +146,7 @@ export default function Login() {
           <DialogContent>
             <DialogHeader>
               <DialogTitle>Segurança dos seus dados</DialogTitle>
-              <DialogDescription className="text-l">
+              <DialogDescription className="text-l ">
                 Olá! Esse projeto possui duas alternativas de login, o que pode
                 causar preocupações com dados e senhas.
               </DialogDescription>
